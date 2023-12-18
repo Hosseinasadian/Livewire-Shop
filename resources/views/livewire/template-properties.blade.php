@@ -15,6 +15,7 @@
                         $index = $property['id'];
                         $server_error = $server_errors['properties'][$cnt]??[];
                     @endphp
+
                     <livewire:property-item :index="$index" :parent="$id" :info="$property" :key="$index" :server_errors="$server_error"
                                             @property-updated="updateTemplateProperties($event.detail.property)"/>
                 @endforeach

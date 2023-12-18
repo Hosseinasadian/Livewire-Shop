@@ -29,16 +29,16 @@ class PropertyItem extends Component
 
     public function mount($index, $parent, $info, $server_errors)
     {
+        $this->id = $info['id'] ?? rand(100000, 1000000);
         $this->parent = $parent;
+        $this->index = $index;
         $this->server_errors = $server_errors;
         $this->name = $info['name'] ?? '';
         $this->slug = $info['slug'] ?? '';
         $this->type = $info['type'] ?? 'text';
-        $this->id = $info['id'] ?? rand(100000, 1000000);
         isset($info['optionsHasImage']) && $this->optionsHasImage = $info['optionsHasImage'];
         isset($info['optionsHasDescription']) && $this->optionsHasDescription = $info['optionsHasDescription'];
         isset($info['items']) && $this->items = $info['items'];
-        $this->index = $index;
     }
 
     public function render()
