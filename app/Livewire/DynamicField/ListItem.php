@@ -35,7 +35,15 @@ class ListItem extends Component
         if ($string_position !== false) {
             $remain_id = substr($id, $string_position + strlen($str2));
             $position = explode('.', $remain_id, 2);
-            $this->value[$position[0]][$position[1]] = $value;
+            $subs = explode('.', $position[1]);
+            $currentArray = &$this->value[$position[0]];
+            foreach ($subs as $sub) {
+                if (!isset($currentArray[$sub])) {
+                    $currentArray[$sub] = [];
+                }
+                $currentArray = &$currentArray[$sub];
+            }
+            $currentArray = $value;
             $this->dispatch('update-field', id: $this->id, value: $this->value);
         }
     }

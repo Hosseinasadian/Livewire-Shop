@@ -42,13 +42,25 @@ Route::group([
             'test_list_item' => [
                 [
                     'select_item' => 'b',
-                    'text_item' => 'dddddddddddddd'
+                    'text_item' => 'dddddddddddddd',
+                    'nested_list_item'=>[
+                        [
+                            'nested_select'=>'na',
+                            'nested_text'=>'d',
+                        ]
+                    ]
                 ],
                 [
-                    'select_item' => 'a',
-                    'text_item' => 'wwwwwwwwww'
+                    'select_item' => 'bc',
+                    'text_item' => 'ccccccccc',
+                    'nested_list_item'=>[
+                        [
+                            'nested_select'=>'nb',
+                            'nested_text'=>'b',
+                        ]
+                    ]
                 ],
-            ]
+            ],
         ];
         $structure = [
             [
@@ -89,6 +101,27 @@ Route::group([
                         'label' => 'text item label',
                         'type' => 'text',
                     ],
+                    [
+                        'id'=>'nested_list_item',
+                        'label'=>'Nested List Item',
+                        'type'=>'list_item',
+                        'items'=>[
+                            [
+                                'id' => 'nested_text',
+                                'label' => 'Nested Text',
+                                'type' => 'text',
+                            ],
+                            [
+                                'id' => 'nested_select',
+                                'label' => 'Nested Select',
+                                'type' => 'select',
+                                'options' => [
+                                    'na' => 'na label',
+                                    'nb' => 'nb label'
+                                ],
+                            ],
+                        ]
+                    ]
                 ]
             ]
         ];

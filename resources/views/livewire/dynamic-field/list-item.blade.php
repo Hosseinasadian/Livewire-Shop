@@ -25,28 +25,30 @@
          data-bs-parent="#{{$id}}_accordion">
         <div class="accordion-body">
             <div class="row">
-                @foreach($value as $v)
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                @foreach($items as $item)
-                                    @php
-                                        $item_unique_id = ($id??'') .'.' . $loop->parent->index . '.'. ($item['id']??'');
-                                        $component_name = "dynamic-field." . ($item['type']??'text');
-                                        $attributes = array_merge($item,[
-                                            'id'=>$item_unique_id,
-                                            'value'=>$v[$item['id']??'']??null,
-                                            'errors'=>[]
-                        ]);
-                                    @endphp
+                @if($value)
+                    @foreach($value as $v)
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    @foreach($items as $item)
+                                        @php
+                                            $item_unique_id = ($id??'') .'.' . $loop->parent->index . '.'. ($item['id']??'');
+                                            $component_name = "dynamic-field." . ($item['type']??'text');
+                                            $attributes = array_merge($item,[
+                                                'id'=>$item_unique_id,
+                                                'value'=>$v[$item['id']??'']??null,
+                                                'errors'=>[]
+                            ]);
+                                        @endphp
 
-                                    @livewire($component_name,$attributes,key($item_unique_id))
+                                        @livewire($component_name,$attributes,key($item_unique_id))
 
-                                @endforeach
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>
